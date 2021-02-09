@@ -1,0 +1,43 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+
+html {
+    min-height: 100%;
+    min-width: 500px;
+    background-image: url(images/coffee.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 750px;
+    width: 440px;
+    background-image: radial-gradient(farthest-corner at 75% 55%, rgb(145, 136, 136), rgb(77, 75, 75), rgb(22, 21, 21));
+    border-radius: 8%;
+}
+
+#screen {
+    display: flex;
+    flex-direction: column;
+    height: 730px;
+    width: 420px;
+    background-color: black;
+    border-radius: 6%;
+}
+
+#icons {
+    display: flex;
+    width: 100%;
+    /*background-color: blanchedalmond;*/
+}
