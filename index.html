@@ -7,25 +7,49 @@
             <link rel="stylesheet" type="text/css" href="style.css">  
         </head>
         <body>
-            <main id="main-container">
-               <div id="screen">
-                   <div id="icons-row">
+            <main class="main-container">
+               <div class="screen">
+                   <div class="icons-row">
                        <div id="time">
                            <label>9:41</label>
                        </div>
-                       <div id="middle-icons">
-                            <div id="speaker"></div>
-                            <div id="camera"></div>
+                       <div class="middle-icon">
+                            <div class="speaker"></div>
                        </div>
-                       <div id="indicators">
+                       <div class="indicators">
                            <img src="images/wifi-2-16.png">
                            <img src="images/wireless-16.png">
                            <img src="images/battery-16.png">
                        </div>
                     </div>
-                    <div id="display"></div>
-                    <div id="button-input"></div>
-                    <div id="exit-swipe"></div>
+                    <div class="display">
+                        <div id="formula">0</div>
+                        <div id="current">0</div>
+                    </div>
+                    <div class="button-container">
+                        <button class="gray">AC</button>
+                        <button class="gray">+/-</button>
+                        <button class="gray">%</button>
+                        <button class="operators">/</button>
+                        <button class="numbers">7</button>
+                        <button class="numbers">8</button>
+                        <button class="numbers">9</button>
+                        <button class="operators">x</button>
+                        <button class="numbers">4</button>
+                        <button class="numbers">5</button>
+                        <button class="numbers">6</button>
+                        <button class="operators">-</button>
+                        <button class="numbers">1</button>
+                        <button class="numbers">2</button>
+                        <button class="numbers">3</button>
+                        <button class="operators">+</button>
+                        <button id="zero" class="numbers">0</button>
+                        <button class="numbers">.</button>
+                        <button class="operators">=</button>
+                    </div>
+                    <div class="exit-container">
+                        <div class="swipe"></div>
+                    </div>
                </div>
             </main>
         </body>
