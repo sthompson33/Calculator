@@ -91,13 +91,16 @@ body {
     justify-content: flex-end;
     width: 100%;
     height: 250px;
-    padding-bottom: 20px;
+    padding: 0 20px 20px 0;
+    color: white;
 }
 
-.display > div {
-    color: white;
-    font-size: 80px;
-    padding-right: 20px;
+#formula {
+    font-size: 3em;
+}
+
+#current {
+    font-size: 4em;
 }
 
 .button-container {
@@ -125,7 +128,7 @@ button {
 }
 
 .top-background {
-    animation: topChange .3s;
+    animation: topChange .2s;
 }
 
 @keyframes topChange {
@@ -140,7 +143,7 @@ button {
 }
 
 .numbers-background {
-    animation: numbersChange .3s;
+    animation: numbersChange .2s;
 }
 
 @keyframes numbersChange {
@@ -161,7 +164,7 @@ button {
 }
 
 .equals-background {
-    animation: equalsChange .3s;
+    animation: equalsChange .2s;
 }
 
 @keyframes equalsChange {
