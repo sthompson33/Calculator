@@ -1,15 +1,37 @@
-let currentNum = '', num1 = '', num2 = '', operator = '';
+let currentNum = '', num1 = null, num2 = null, operator = null;
+const current = document.getElementById('current');
+
 const allClear = document.getElementById('AC');
 allClear.addEventListener('click', () => clearEverything());
+
+const negative = document.getElementById('negative');
+negative.addEventListener('click', () => {
+    const number = Number(current.textContent);
+    if(number > 0) {
+        currentNum = number - (number * 2);
+        currentDisplay(currentNum);
+    } else {
+        currentNum = number + (Math.abs(number) * 2);
+        currentDisplay(currentNum);
+    }
+    currentNum = currentNum.toString();
+    num1 = null;
+});
 
 const operators = Array.from(document.getElementsByClassName('operators'));
 operators.forEach(btn => {
     btn.addEventListener('click', (e) => {
         clearButtons();
-        operator = e.target.textContent;
-        num1 = currentNum;
-        currentNum = '';
         btn.classList.add('white-background');
+        if(!num1) {
+            num1 = currentNum;
+            currentNum = '';
+        } else {
+            operate(num1, currentNum);
+            currentNum = '';
+            num1 = current.textContent;
+        }
+        operator = e.target.textContent;
     });
 });
 
@@ -17,9 +39,7 @@ const equals = document.getElementById('equals');
 equals.addEventListener('click', () => {
     clearButtons();
     equals.classList.add('equals-background');
-    num2 = currentNum;
-    currentNum = '';
-    operate(num1, num2);
+    operate(num1, currentNum);
 });
 equals.addEventListener('animationend', () => {
     equals.classList.remove('equals-background');
@@ -30,7 +50,13 @@ numbers.forEach(btn => {
     btn.addEventListener('click', (e) => {
         clearButtons();
         btn.classList.add('numbers-background');
-        if(currentNum.length < 9) currentNum += e.target.textContent;
+        if(currentNum.includes('.') && e.target.textContent == '.') {
+            //left blank to skip over adding another .
+        } else {
+            if(currentNum.length < 9) {
+                currentNum += e.target.textContent;
+            }
+        }
         currentDisplay(currentNum);
     });
     btn.addEventListener('animationend', () => {
@@ -48,9 +74,6 @@ topBtns.forEach(btn => {
         btn.classList.remove('top-background');
     })
 });
-
-const current = document.getElementById('current');
-const formula = document.getElementById('formula');
 
 function currentDisplay(num) {
   current.textContent = num;
@@ -86,7 +109,7 @@ function operate(a, b) {
             currentDisplay(a * b);
             break;
         case '/':
-            currentDisplay(a / b);
+            (b == 0) ? currentDisplay('Error') : currentDisplay(a /b);
             break;
     }
 }
