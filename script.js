@@ -68,7 +68,7 @@ numbers.forEach(btn => {
         if(currentNum.includes('.') && e.target.textContent == '.') {
             //left blank to skip over adding another .
         } else {
-            if(currentNum.length < 10) {
+            if(currentNum.length < 9) {
                 currentNum += e.target.textContent;
             }
         }
@@ -121,6 +121,12 @@ function operate(operator, a, b) {
 }
 
 function round(num) {
-    return Math.round(num * 1000) / 1000;
+    console.log(typeof num);
+    //change number to scientific notation if larger than screen size
+    if(num > 9999999999) {
+        return Number.parseFloat(num).toExponential(4);
+    } else {
+        return Math.round(num * 1000) / 1000;
+    }
 }
 
