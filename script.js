@@ -29,7 +29,7 @@ const percent = document.getElementById('percent');
 percent.addEventListener('click', () => {
     const number = Number(currentDisplay.textContent);
     currentNum = number / 100;
-    display(currentNum);
+    display(round(currentNum));
     currentNum = currentNum.toString();
 });
 
@@ -121,9 +121,11 @@ function operate(operator, a, b) {
 }
 
 function round(num) {
-    console.log(typeof num);
     //change number to scientific notation if larger than screen size
-    if(num > 9999999999) {
+    num = num.toFixed(4);
+    
+    //may need to set toFixed() to num here first
+    if(num.toString().length > 10) {
         return Number.parseFloat(num).toExponential(4);
     } else {
         return Math.round(num * 1000) / 1000;
