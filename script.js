@@ -1,18 +1,25 @@
 let currentNum = '', num1 = null, num2 = null, operator = null;
-const current = document.getElementById('current');
+const currentDisplay = document.getElementById('current');
 
 const allClear = document.getElementById('AC');
-allClear.addEventListener('click', () => clearEverything());
+allClear.addEventListener('click', () => {
+    clearButtons();
+    currentNum = '';
+    num1 = '';
+    num2 = '';
+    operator = '';
+    current.textContent = 0;
+});
 
 const negative = document.getElementById('negative');
 negative.addEventListener('click', () => {
-    const number = Number(current.textContent);
+    const number = Number(currentDisplay.textContent);
     if(number > 0) {
         currentNum = number - (number * 2);
-        currentDisplay(currentNum);
+        display(currentNum);
     } else {
         currentNum = number + (Math.abs(number) * 2);
-        currentDisplay(currentNum);
+        display(currentNum);
     }
     currentNum = currentNum.toString();
     num1 = null;
@@ -27,9 +34,9 @@ operators.forEach(btn => {
             num1 = currentNum;
             currentNum = '';
         } else {
-            operate(num1, currentNum);
+            operate(operator, num1, currentNum);
             currentNum = '';
-            num1 = current.textContent;
+            num1 = currentDisplay.textContent;
         }
         operator = e.target.textContent;
     });
@@ -39,7 +46,7 @@ const equals = document.getElementById('equals');
 equals.addEventListener('click', () => {
     clearButtons();
     equals.classList.add('equals-background');
-    operate(num1, currentNum);
+    operate(operator, num1, currentNum);
 });
 equals.addEventListener('animationend', () => {
     equals.classList.remove('equals-background');
@@ -53,11 +60,11 @@ numbers.forEach(btn => {
         if(currentNum.includes('.') && e.target.textContent == '.') {
             //left blank to skip over adding another .
         } else {
-            if(currentNum.length < 9) {
+            if(currentNum.length < 10) {
                 currentNum += e.target.textContent;
             }
         }
-        currentDisplay(currentNum);
+        display(currentNum);
     });
     btn.addEventListener('animationend', () => {
         btn.classList.remove('numbers-background');
@@ -75,17 +82,8 @@ topBtns.forEach(btn => {
     })
 });
 
-function currentDisplay(num) {
+function display(num) {
   current.textContent = num;
-}
-
-function clearEverything() {
-    clearButtons();
-    currentNum = '';
-    num1 = '';
-    num2 = '';
-    operator = '';
-    current.textContent = 0;
 }
 
 function clearButtons() {
@@ -94,25 +92,27 @@ function clearButtons() {
     });
 }
 
-function operate(a, b) {
+function operate(operator, a, b) {
     a = Number(a);
     b = Number(b);
 
     switch(operator) {
         case '+':
-            currentDisplay(a + b);
+            display(round(a + b));
             break;
         case '-':
-            currentDisplay(a - b);
+            display(round(a - b));
             break;
         case 'x':
-            currentDisplay(a * b);
+            display(round(a * b));
             break;
         case '/':
-            (b == 0) ? currentDisplay('Error') : currentDisplay(a /b);
+            (b == 0) ? display('Error') : display(round(a / b));
             break;
     }
 }
 
-
+function round(num) {
+    return Math.round(num * 1000) / 1000;
+}
 
