@@ -25,6 +25,14 @@ negative.addEventListener('click', () => {
     num1 = null;
 });
 
+const percent = document.getElementById('percent');
+percent.addEventListener('click', () => {
+    const number = Number(currentDisplay.textContent);
+    currentNum = number / 100;
+    display(currentNum);
+    currentNum = currentNum.toString();
+});
+
 const operators = Array.from(document.getElementsByClassName('operators'));
 operators.forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -83,7 +91,7 @@ topBtns.forEach(btn => {
 });
 
 function display(num) {
-  current.textContent = num;
+  currentDisplay.textContent = num;
 }
 
 function clearButtons() {
