@@ -121,10 +121,8 @@ function operate(operator, a, b) {
 }
 
 function round(num) {
-    //change number to scientific notation if larger than screen size
     num = num.toFixed(4);
-    
-    //may need to set toFixed() to num here first
+    //change number to scientific notation if larger than screen size
     if(num.toString().length > 10) {
         return Number.parseFloat(num).toExponential(4);
     } else {
