@@ -1,6 +1,17 @@
 let currentNum = '', num1 = null, num2 = null, operator = null;
 const currentDisplay = document.getElementById('current');
 
+const topBtns = Array.from(document.getElementsByClassName('top-gray'));
+topBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        clearButtons();
+        btn.classList.add('top-background');
+    })
+    btn.addEventListener('animationend', () => {
+        btn.classList.remove('top-background');
+    })
+});
+
 const allClear = document.getElementById('AC');
 allClear.addEventListener('click', () => {
     clearButtons();
@@ -76,17 +87,6 @@ numbers.forEach(btn => {
     btn.addEventListener('animationend', () => {
         btn.classList.remove('numbers-background');
     });
-});
-
-const topBtns = Array.from(document.getElementsByClassName('top-gray'));
-topBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        clearButtons();
-        btn.classList.add('top-background');
-    })
-    btn.addEventListener('animationend', () => {
-        btn.classList.remove('top-background');
-    })
 });
 
 function display(num) {
