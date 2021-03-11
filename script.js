@@ -27,10 +27,9 @@ negative.addEventListener('click', () => {
 
 const percent = document.getElementById('percent');
 percent.addEventListener('click', () => {
-    const number = Number(currentDisplay.textContent);
-    currentNum = number / 100;
-    display(round(currentNum));
-    currentNum = currentNum.toString();
+    operate('/', currentDisplay.textContent, 100);
+    num1 = currentDisplay.textContent;
+    currentNum = '';
 });
 
 const operators = Array.from(document.getElementsByClassName('operators'));
@@ -91,7 +90,11 @@ topBtns.forEach(btn => {
 });
 
 function display(num) {
-  currentDisplay.textContent = num;
+    if(num.toString().length > 9) {
+        currentDisplay.textContent = format(num);
+    } else {
+        currentDisplay.textContent = num;
+    }
 }
 
 function clearButtons() {
@@ -106,25 +109,25 @@ function operate(operator, a, b) {
 
     switch(operator) {
         case '+':
-            display(round(a + b));
+            display(a + b);
             break;
         case '-':
-            display(round(a - b));
+            display(a - b);
             break;
         case 'x':
-            display(round(a * b));
+            display(a * b);
             break;
         case '/':
-            (b == 0) ? display('Error') : display(round(a / b));
+            (b == 0) ? display('Error') : display(a / b);
             break;
     }
 }
 
-function round(num) {
-    num = num.toFixed(4);
+function format(num) {
+    num = num.toFixed(6);
     //change number to scientific notation if larger than screen size
     if(num.toString().length > 10) {
-        return Number.parseFloat(num).toExponential(4);
+        return parseFloat(num).toExponential(4);
     } else {
         return Math.round(num * 1000) / 1000;
     }
